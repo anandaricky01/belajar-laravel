@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
                 //     'password' => bcrypt('12345')
                 // ]);
                 
-        User::factory(3)->create();
+        User::factory(10)->create();
 
         Category::create([
             'name' => 'Web Programming',
@@ -46,7 +46,7 @@ class DatabaseSeeder extends Seeder
             'slug' => 'web-design'
         ]);
 
-        Post::factory(20)->create();
+        Post::factory(50)->create();
         // Post::create([
         //     'judul' => 'Judul Pertama',
         //     'slug' => 'judul-pertama',
