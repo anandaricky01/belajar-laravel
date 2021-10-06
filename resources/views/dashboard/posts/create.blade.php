@@ -10,23 +10,43 @@
         @csrf
         <div class="mb-3">
           <label for="judul" class="form-label">Judul</label>
-          <input type="text" class="form-control" id="judul" name="judul">
+          <input type="text" class="form-control @error('judul') is-invalid @enderror" id="judul" name="judul" required value="{{ old('judul') }}">
+          @error('judul')
+              <div class="invalid-feedback">
+                {{ $message }}
+              </div>
+          @enderror
         </div>
+
         <div class="mb-3">
           <label for="slug" class="form-label">Slug</label>
-          <input type="text" class="form-control" id="slug" name="slug">
+          <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug" required value="{{ old('slug') }}">
+          @error('slug')
+            <div class="invalid-feedback">
+              {{ $message }}
+            </div>
+          @enderror
         </div>
+
         <div class="mb-3">
           <label for="category" class="form-label">Category</label>
           <select class="form-select" name="category_id">
             @foreach ($categories as $category)
-              <option value="{{ $category->id }}">{{ $category->name }}</option>
+              @if (old("category_id") == $category->id)
+                <option selected value="{{ $category->id }}">{{ $category->name }}</option>
+              @else 
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+              @endif
             @endforeach
           </select>
         </div>
+
         <div class="mb-3">
           <label for="body" class="form-label">Body</label>
-          <input id="body" type="hidden" name="body">
+          @error('body')
+              <p class="text-danger">{{ $message }}</p>
+          @enderror
+          <input id="body" type="hidden" name="body" value="{{ old('body') }}">
           <trix-editor input="body"></trix-editor>
         </div>
         <button type="submit" class="btn btn-primary">Create Post</button>

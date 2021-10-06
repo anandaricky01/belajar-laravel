@@ -3,7 +3,7 @@
 @section('container')
 <article>
 
-    <div class="container my-3">
+    <div class="container my-4">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <h2>{{ $post->judul }}</h2>
