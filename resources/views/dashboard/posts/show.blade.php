@@ -12,16 +12,18 @@
                         <span data-feather="arrow-left"></span> Back to Post
                     </button>
                 </a>
-                <a href="">
+                <a href="/dashboard/posts/{{ $post->slug }}/edit">
                     <button class="btn btn-warning my-3">
                         <span data-feather="edit"></span> Edit
                     </button>
                 </a>
-                <a href="">
-                    <button class="btn btn-danger my-3">
-                        <span data-feather="trash-2"></span> Delete
+                <form action="/dashboard/posts/{{ $post->slug }}" method="POST" class="d-inline">
+                    @method('delete')
+                    @csrf
+                    <button class="btn btn-danger my-3" type="submit" onclick="return confirm('Kamu yakin?')">
+                      <span data-feather="trash-2"></span> Delete
                     </button>
-                </a>
+                  </form>
                 <img src="https://source.unsplash.com/1200x400?{{ $post->category->name }}" class="img-fluid mb-4" alt="{{ $post->category->name }}">
                 {!! $post->body !!}
                 {{-- 
